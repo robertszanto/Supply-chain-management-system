@@ -3,9 +3,9 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.31">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <IntrospectionStateNumber>755</IntrospectionStateNumber>
+      <IntrospectionStateNumber>857</IntrospectionStateNumber>
       <ServerVersion>14.1</ServerVersion>
-      <StartupTime>1638898581</StartupTime>
+      <StartupTime>1639467366</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -801,7 +801,7 @@ false Zulu
 13654||10|C|G
 13654||-9223372036854775808|U|G
 13654||10|U|G</Grants>
-      <IntrospectionStateNumber>756</IntrospectionStateNumber>
+      <IntrospectionStateNumber>858</IntrospectionStateNumber>
       <ObjectId>14020</ObjectId>
       <Relations>sequence|table|16404|16405|1
 sequence|table|16414|16415|1
@@ -811,6 +811,11 @@ sequence|table|16490|16491|1
 sequence|table|16504|16505|1
 sequence|table|16520|16521|1
 sequence|table|16559|16560|1
+sequence|table|16574|16569|2
+sequence|table|16596|16597|1
+sequence|table|16604|16605|1
+sequence|table|16614|16615|1
+sequence|table|16624|16625|1
 </Relations>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4257,30 +4262,399 @@ sequence|table|16559|16560|1
     <schema id="265" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>756</IntrospectionStateNumber>
+      <IntrospectionStateNumber>858</IntrospectionStateNumber>
       <ObjectId>2200</ObjectId>
       <StateNumber>527</StateNumber>
       <OwnerName>postgres</OwnerName>
     </schema>
-    <sequence id="266" parent="265" name="users_id_seq">
+    <sequence id="266" parent="265" name="address_id_seq">
+      <DataType>integer|0s</DataType>
+      <ObjectId>16604</ObjectId>
+      <StateNumber>822</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <sequence id="267" parent="265" name="authority_id_seq">
+      <DataType>integer|0s</DataType>
+      <ObjectId>16574</ObjectId>
+      <StateNumber>764</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <sequence id="268" parent="265" name="merchant_id_seq">
+      <DataType>integer|0s</DataType>
+      <ObjectId>16614</ObjectId>
+      <StateNumber>827</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <sequence id="269" parent="265" name="order_item_id_seq">
+      <DataType>integer|0s</DataType>
+      <ObjectId>16624</ObjectId>
+      <StateNumber>832</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <sequence id="270" parent="265" name="orders_id_seq">
+      <DataType>integer|0s</DataType>
+      <ObjectId>16596</ObjectId>
+      <StateNumber>812</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <sequence id="271" parent="265" name="users_id_seq">
       <DataType>integer|0s</DataType>
       <ObjectId>16559</ObjectId>
       <StateNumber>743</StateNumber>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <table id="267" parent="265" name="authority">
+    <table id="272" parent="265" name="address">
+      <ObjectId>16605</ObjectId>
+      <StateNumber>838</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="273" parent="265" name="authority">
       <ObjectId>16569</ObjectId>
-      <StateNumber>753</StateNumber>
+      <StateNumber>770</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="268" parent="265" name="users">
+    <table id="274" parent="265" name="merchant">
+      <ObjectId>16615</ObjectId>
+      <StateNumber>839</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="275" parent="265" name="order_item">
+      <ObjectId>16625</ObjectId>
+      <StateNumber>845</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="276" parent="265" name="orders">
+      <ObjectId>16597</ObjectId>
+      <StateNumber>855</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="277" parent="265" name="users">
       <ObjectId>16560</ObjectId>
-      <StateNumber>749</StateNumber>
+      <StateNumber>788</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <column id="269" parent="268" name="id">
+    <column id="278" parent="272" name="id">
+      <DataType>integer|0s</DataType>
+      <DefaultExpression>nextval(&apos;address_id_seq&apos;::regclass)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>822</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="279" parent="272" name="country">
+      <DataType>varchar|0s</DataType>
+      <Position>2</Position>
+      <StateNumber>822</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="280" parent="272" name="city">
+      <DataType>varchar|0s</DataType>
+      <Position>3</Position>
+      <StateNumber>822</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="281" parent="272" name="street">
+      <DataType>varchar|0s</DataType>
+      <Position>4</Position>
+      <StateNumber>822</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="282" parent="272" name="house_number">
+      <DataType>integer|0s</DataType>
+      <Position>5</Position>
+      <StateNumber>822</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="283" parent="272" name="zip_code">
+      <DataType>integer|0s</DataType>
+      <Position>6</Position>
+      <StateNumber>822</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <index id="284" parent="272" name="address_id_uindex">
+      <ClassIds>1978</ClassIds>
+      <ColNames>id</ColNames>
+      <CollationIds>0</CollationIds>
+      <ObjectId>16613</ObjectId>
+      <StateNumber>823</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <index id="285" parent="272" name="address_pk">
+      <ClassIds>1978</ClassIds>
+      <ColNames>id</ColNames>
+      <CollationIds>0</CollationIds>
+      <ObjectId>16611</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>822</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="286" parent="272" name="address_pk">
+      <ColNames>id</ColNames>
+      <ObjectId>16612</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>822</StateNumber>
+      <UnderlyingIndexId>16611</UnderlyingIndexId>
+    </key>
+    <column id="287" parent="273" name="id">
+      <DataType>integer|0s</DataType>
+      <DefaultExpression>nextval(&apos;authority_id_seq&apos;::regclass)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>764</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="288" parent="273" name="name">
+      <DataType>varchar|0s</DataType>
+      <Position>3</Position>
+      <StateNumber>766</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="289" parent="273" name="user_id">
+      <DataType>integer|0s</DataType>
+      <Position>4</Position>
+      <StateNumber>767</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <foreign-key id="290" parent="273" name="authority_users_id_fk">
+      <ColNames>user_id</ColNames>
+      <ObjectId>16584</ObjectId>
+      <RefColNames>id</RefColNames>
+      <RefColPositions>1</RefColPositions>
+      <RefKeyName>users_pk</RefKeyName>
+      <StateNumber>770</StateNumber>
+      <RefTableId>16560</RefTableId>
+      <RefTableName>users</RefTableName>
+      <RefTableKind>table</RefTableKind>
+    </foreign-key>
+    <index id="291" parent="273" name="authority_id_uindex">
+      <ClassIds>1978</ClassIds>
+      <ColNames>id</ColNames>
+      <CollationIds>0</CollationIds>
+      <ObjectId>16581</ObjectId>
+      <StateNumber>768</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <index id="292" parent="273" name="authority_pk">
+      <ClassIds>1978</ClassIds>
+      <ColNames>id</ColNames>
+      <CollationIds>0</CollationIds>
+      <ObjectId>16582</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>769</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="293" parent="273" name="authority_pk">
+      <ColNames>id</ColNames>
+      <ObjectId>16583</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>769</StateNumber>
+      <UnderlyingIndexId>16582</UnderlyingIndexId>
+    </key>
+    <column id="294" parent="274" name="id">
+      <DataType>integer|0s</DataType>
+      <DefaultExpression>nextval(&apos;merchant_id_seq&apos;::regclass)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>827</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="295" parent="274" name="name">
+      <DataType>varchar|0s</DataType>
+      <Position>2</Position>
+      <StateNumber>827</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="296" parent="274" name="merchant_id_uindex">
+      <ClassIds>1978</ClassIds>
+      <ColNames>id</ColNames>
+      <CollationIds>0</CollationIds>
+      <ObjectId>16623</ObjectId>
+      <StateNumber>828</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <index id="297" parent="274" name="merchant_pk">
+      <ClassIds>1978</ClassIds>
+      <ColNames>id</ColNames>
+      <CollationIds>0</CollationIds>
+      <ObjectId>16621</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>827</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="298" parent="274" name="merchant_pk">
+      <ColNames>id</ColNames>
+      <ObjectId>16622</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>827</StateNumber>
+      <UnderlyingIndexId>16621</UnderlyingIndexId>
+    </key>
+    <column id="299" parent="275" name="id">
+      <DataType>integer|0s</DataType>
+      <DefaultExpression>nextval(&apos;order_item_id_seq&apos;::regclass)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>832</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="300" parent="275" name="name">
+      <DataType>varchar|0s</DataType>
+      <Position>2</Position>
+      <StateNumber>832</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="301" parent="275" name="quantity">
+      <DataType>integer|0s</DataType>
+      <Position>3</Position>
+      <StateNumber>832</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="302" parent="275" name="order_id">
+      <DataType>integer|0s</DataType>
+      <Position>4</Position>
+      <StateNumber>844</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <foreign-key id="303" parent="275" name="order_item_orders_id_fk">
+      <ColNames>order_id</ColNames>
+      <ObjectId>16649</ObjectId>
+      <RefColNames>id</RefColNames>
+      <RefColPositions>1</RefColPositions>
+      <RefKeyName>orders_pk</RefKeyName>
+      <StateNumber>845</StateNumber>
+      <RefTableId>16597</RefTableId>
+      <RefTableName>orders</RefTableName>
+      <RefTableKind>table</RefTableKind>
+    </foreign-key>
+    <index id="304" parent="275" name="order_item_id_uindex">
+      <ClassIds>1978</ClassIds>
+      <ColNames>id</ColNames>
+      <CollationIds>0</CollationIds>
+      <ObjectId>16633</ObjectId>
+      <StateNumber>833</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <index id="305" parent="275" name="order_item_pk">
+      <ClassIds>1978</ClassIds>
+      <ColNames>id</ColNames>
+      <CollationIds>0</CollationIds>
+      <ObjectId>16631</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>832</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="306" parent="275" name="order_item_pk">
+      <ColNames>id</ColNames>
+      <ObjectId>16632</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>832</StateNumber>
+      <UnderlyingIndexId>16631</UnderlyingIndexId>
+    </key>
+    <column id="307" parent="276" name="id">
+      <DataType>integer|0s</DataType>
+      <DefaultExpression>nextval(&apos;orders_id_seq&apos;::regclass)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>812</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="308" parent="276" name="user_id">
+      <DataType>integer|0s</DataType>
+      <Position>2</Position>
+      <StateNumber>812</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="309" parent="276" name="merchant_id">
+      <DataType>integer|0s</DataType>
+      <Position>3</Position>
+      <StateNumber>837</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="310" parent="276" name="address_id">
+      <DataType>integer|0s</DataType>
+      <Position>4</Position>
+      <StateNumber>817</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="311" parent="276" name="phone_number">
+      <DataType>varchar|0s</DataType>
+      <Position>5</Position>
+      <StateNumber>855</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <foreign-key id="312" parent="276" name="orders_users_id_fk">
+      <ColNames>user_id</ColNames>
+      <ObjectId>16644</ObjectId>
+      <RefColNames>id</RefColNames>
+      <RefColPositions>1</RefColPositions>
+      <RefKeyName>users_pk</RefKeyName>
+      <StateNumber>840</StateNumber>
+      <RefTableId>16560</RefTableId>
+      <RefTableName>users</RefTableName>
+      <RefTableKind>table</RefTableKind>
+    </foreign-key>
+    <foreign-key id="313" parent="276" name="orders_merchant_id_fk">
+      <ColNames>merchant_id</ColNames>
+      <ObjectId>16639</ObjectId>
+      <RefColNames>id</RefColNames>
+      <RefColPositions>1</RefColPositions>
+      <RefKeyName>merchant_pk</RefKeyName>
+      <StateNumber>839</StateNumber>
+      <RefTableId>16615</RefTableId>
+      <RefTableName>merchant</RefTableName>
+      <RefTableKind>table</RefTableKind>
+    </foreign-key>
+    <foreign-key id="314" parent="276" name="orders_address_id_fk">
+      <ColNames>address_id</ColNames>
+      <ObjectId>16634</ObjectId>
+      <RefColNames>id</RefColNames>
+      <RefColPositions>1</RefColPositions>
+      <RefKeyName>address_pk</RefKeyName>
+      <StateNumber>838</StateNumber>
+      <RefTableId>16605</RefTableId>
+      <RefTableName>address</RefTableName>
+      <RefTableKind>table</RefTableKind>
+    </foreign-key>
+    <index id="315" parent="276" name="orders_id_uindex">
+      <ClassIds>1978</ClassIds>
+      <ColNames>id</ColNames>
+      <CollationIds>0</CollationIds>
+      <ObjectId>16603</ObjectId>
+      <StateNumber>855</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <index id="316" parent="276" name="orders_pk">
+      <ClassIds>1978</ClassIds>
+      <ColNames>id</ColNames>
+      <CollationIds>0</CollationIds>
+      <ObjectId>16601</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>855</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="317" parent="276" name="orders_pk">
+      <ColNames>id</ColNames>
+      <ObjectId>16602</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>812</StateNumber>
+      <UnderlyingIndexId>16601</UnderlyingIndexId>
+    </key>
+    <column id="318" parent="277" name="id">
       <DataType>integer|0s</DataType>
       <DefaultExpression>nextval(&apos;users_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
@@ -4288,31 +4662,37 @@ sequence|table|16559|16560|1
       <StateNumber>743</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="270" parent="268" name="first_name">
+    <column id="319" parent="277" name="first_name">
       <DataType>varchar|0s</DataType>
       <Position>2</Position>
       <StateNumber>743</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="271" parent="268" name="last_name">
+    <column id="320" parent="277" name="last_name">
       <DataType>varchar|0s</DataType>
       <Position>3</Position>
       <StateNumber>743</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="272" parent="268" name="email">
+    <column id="321" parent="277" name="email">
       <DataType>varchar|0s</DataType>
       <Position>4</Position>
       <StateNumber>748</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="273" parent="268" name="phone">
+    <column id="322" parent="277" name="password">
       <DataType>varchar|0s</DataType>
-      <Position>5</Position>
-      <StateNumber>749</StateNumber>
+      <Position>6</Position>
+      <StateNumber>786</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="274" parent="268" name="users_id_uindex">
+    <column id="323" parent="277" name="phone">
+      <DataType>varchar|0s</DataType>
+      <Position>7</Position>
+      <StateNumber>788</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="324" parent="277" name="users_id_uindex">
       <ClassIds>1978</ClassIds>
       <ColNames>id</ColNames>
       <CollationIds>0</CollationIds>
@@ -4321,7 +4701,7 @@ sequence|table|16559|16560|1
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="275" parent="268" name="users_pk">
+    <index id="325" parent="277" name="users_pk">
       <ClassIds>1978</ClassIds>
       <ColNames>id</ColNames>
       <CollationIds>0</CollationIds>
@@ -4331,7 +4711,7 @@ sequence|table|16559|16560|1
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="276" parent="268" name="users_pk">
+    <key id="326" parent="277" name="users_pk">
       <ColNames>id</ColNames>
       <ObjectId>16567</ObjectId>
       <Primary>1</Primary>

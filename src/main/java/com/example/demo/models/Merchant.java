@@ -5,15 +5,14 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "authority", schema = "public")
 @Getter
 @Setter
-public class Authority {
-
+@Entity
+@Table(name = "merchant")
+public class Merchant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     private String name;
 }
