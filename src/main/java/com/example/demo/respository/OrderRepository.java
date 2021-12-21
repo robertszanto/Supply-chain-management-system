@@ -1,5 +1,6 @@
 package com.example.demo.respository;
 
+import com.example.demo.models.Merchant;
 import com.example.demo.models.Order;
 import com.example.demo.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,4 +19,10 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     @Query("select o from Order o where o.user = ?1")
     Optional<List<Order>> getUserOrders(User user);
+
+    @Query("select o from Order o")
+    Optional<List<Order>> getAllOrders();
+
+    @Query("select o from Order o where o.merchant.name = ?1")
+    Optional<List<Order>> getOrdersByMerchantName(String merchantName);
 }

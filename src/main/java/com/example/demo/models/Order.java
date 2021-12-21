@@ -19,11 +19,10 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "merchant_id")
     private Merchant merchant;
 
-//    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id")
     List<OrderItem> orderItems;
@@ -34,4 +33,7 @@ public class Order {
 
     @Column(name = "phone_number")
     private String phoneNumber;
+
+    @Column(name = "status")
+    private String orderStatus;
 }
