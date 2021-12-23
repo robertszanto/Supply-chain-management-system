@@ -10,6 +10,7 @@ import com.example.demo.models.User;
 import com.example.demo.respository.MerchantRepository;
 import com.example.demo.respository.OrderRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -26,7 +27,8 @@ public class OrderService {
 
     @Transactional
     public Order create(Order order){
-        User userForOrder = userService.getById(7L);
+
+        User userForOrder = userService.getByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
         Optional<Merchant> merchantForOrder = merchantRepository.getMerchantByName(order.getMerchant().getName());
         if (merchantForOrder.isEmpty()){
             throw new MerchantNotFound("Merchant doesn't exist");
@@ -91,10 +93,11 @@ public class OrderService {
         return ordersForMerchant.get();
     }
 
+    @Transactional
     public OrderStatus updateToNextStatusState(Long orderId) {
         Order order = getById(orderId);
         OrderStatus oldStatus = OrderStatus.valueOf(order.getOrderStatus());
-        if (oldStatus == OrderStatus.READY_TO_DELIVER){
+        if (oldStatus == OrderStatus.DELIVERED){
             throw new OrderStatusException("This is the LAST possible Order Status!!");
         }
         OrderStatus newStatus = OrderStatus.values()[oldStatus.ordinal() + 1];
@@ -103,6 +106,7 @@ public class OrderService {
         return newStatus;
     }
 
+    @Transactional
     public OrderStatus updateToPreviousStatusState(Long orderId) {
         Order order = getById(orderId);
         OrderStatus oldStatus = OrderStatus.valueOf(order.getOrderStatus());
@@ -113,5 +117,12 @@ public class OrderService {
         order.setOrderStatus(newStatus.toString());
         orderRepository.save(order);
         return newStatus;
+    }
+
+    @Transactional
+    public Order cancel(Long orderId) {
+        Order orderToCancel = getById(orderId);
+        orderToCancel.setOrderStatus(OrderStatus.CANCELED.name());
+        return orderRepository.save(orderToCancel);
     }
 }

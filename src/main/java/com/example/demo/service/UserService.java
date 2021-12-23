@@ -6,6 +6,7 @@ import com.example.demo.models.Authority;
 import com.example.demo.models.User;
 import com.example.demo.respository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -20,9 +21,10 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Transactional
-    public User saveUser(User user) {
+    public User saveClientUser(User user) {
         var dbUser = userRepository.getUserByEmail(user.getEmail());
         if (dbUser.isPresent()) {
             throw new UserAlreadyInDbException("You cannot save this user to DB. User is already present in DB!");
@@ -30,6 +32,35 @@ public class UserService {
         Authority authority = new Authority();
         authority.setName("CLIENT");
         user.setAuthorities(List.of(authority));
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+
+        return userRepository.save(user);
+    }
+
+    @Transactional
+    public User saveMerchantUser(User user) {
+        var dbUser = userRepository.getUserByEmail(user.getEmail());
+        if (dbUser.isPresent()) {
+            throw new UserAlreadyInDbException("You cannot save this user to DB. User is already present in DB!");
+        }
+        Authority authority = new Authority();
+        authority.setName("MERCHANT");
+        user.setAuthorities(List.of(authority));
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+
+        return userRepository.save(user);
+    }
+
+    @Transactional
+    public User saveAdminUser(User user) {
+        var dbUser = userRepository.getUserByEmail(user.getEmail());
+        if (dbUser.isPresent()) {
+            throw new UserAlreadyInDbException("You cannot save this user to DB. User is already present in DB!");
+        }
+        Authority authority = new Authority();
+        authority.setName("ADMIN");
+        user.setAuthorities(List.of(authority));
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 
         return userRepository.save(user);
     }

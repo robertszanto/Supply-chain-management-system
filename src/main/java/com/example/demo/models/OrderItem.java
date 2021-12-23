@@ -3,6 +3,7 @@ package com.example.demo.models;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "order_item")
+@ToString
 public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
